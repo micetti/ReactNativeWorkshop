@@ -6,8 +6,7 @@ import DataContentBox from './DataContentBox'
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: 'rgb(232,230,187)',
-    borderRadius: 3,
+    backgroundColor: 'black',
   },
   text: {
     fontSize: 12,
@@ -26,26 +25,29 @@ class DataPoint extends React.Component {
       return <DataContentBox content={this.props.content}/>
     }
     return (
-      <View >
+      <View>
         <FlatList
           data={this.props.content.map(item => item)}
+          keyExtractor={(item, index) => index}
           renderItem={this.renderDataContentBox}
         />
       </View>
     )
   }
 
-  renderDataContentBox = ({ index, item }) => (
-    <DataContentBox key={index} content={item}/>
+  renderDataContentBox = ({index, item}) => (
+    <DataContentBox content={item}/>
   );
 
   render() {
-    const { title } = this.props;
+    const {title, content} = this.props;
     return (
-      <View style={styles.box}>
-        <DataTitle title={title}/>
-        {this.getDataContentBoxes()}
-      </View>
+      content.length !== 0 ? (
+        <View style={styles.box}>
+          <DataTitle title={title}/>
+          {this.getDataContentBoxes()}
+        </View>
+      ) : null
     )
   }
 }

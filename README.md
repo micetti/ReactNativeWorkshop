@@ -12,6 +12,12 @@ Assuming that you have Node installed:
 
 `npm start`
 
+You might have to install watchman with brew:
+
+`brew update`
+
+`brew install watchman`
+
 get the Expo client app for your device, scan the QR-code in the terminal and see your App. (you have to be on the same network as your computer) 
 
 now you can stop the process which is running `npm start`

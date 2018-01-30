@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: 'rgb(193,191,110)',
+    backgroundColor: 'black',
+    borderColor: 'yellow',
+    borderWidth: 1,
     marginBottom: 10,
     marginHorizontal: 10,
     borderRadius: 3,
   },
   text: {
-    fontSize: 12,
+    fontSize: 16,
+    color: 'yellow'
   }
 });
 

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'rgb(75,75,75)',
+    color: 'yellow',
     marginLeft: 10,
   }
 });
