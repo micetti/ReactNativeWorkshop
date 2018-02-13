@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const DataContentBox = props => (
+const DataSingleRow = props => (
   <View style={styles.box}>
     <Text style={styles.text}> {props.content} </Text>
   </View>
 );
 
-DataContentBox.propTypes = {
+DataSingleRow.propTypes = {
   content: PropTypes.string.isRequired,
 };
 
 
-export {DataContentBox as default}
+export { DataSingleRow as default }

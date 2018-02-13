@@ -3,12 +3,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 
 import DataTitle from '../../components/DataTitle';
-import DataContentBox from '../../components/DataContentBox';
+import DataSingleRow from '../../components/DataSingleRow';
 import DataPoint from '../../components/DataPoint';
-import DataList from '../../components/DataList';
+import DataFullScreen from '../../components/DataFullScreen';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import Screen from '../../components/Screen'
+import Container from '../../components/Container'
 
 const exampleData = {
   name: 'C-3PO',
@@ -39,11 +39,11 @@ const exampleData = {
 };
 
 storiesOf('Components', module)
-  .add('Screen', () => <Screen />)
+  .add('Container', () => <Container />)
   .add('SearchBar', () => <SearchBar defaultElement={'1'} defaultType={'people'}/>)
   .add('Header', () => <Header />)
   .add('DataTitle', () => <DataTitle title={"I am the title"}/>)
-  .add('DataContentBox', () => <DataContentBox content={"I am the context here"}/>)
+  .add('DataSingleRow', () => <DataSingleRow content={"I am the context here"}/>)
   .add('DataPoint', () => <DataPoint title={"I am the title"} content={"I am the context here"}/>)
   .add('DataPoint_list', () => <DataPoint title={"I am the title"} content={["I am the context here", "fuuuuuuuuu"]}/>)
-  .add('DataList', () => <DataList content={exampleData}/>);
+  .add('DataFullScreen', () => <DataFullScreen content={exampleData}/>);

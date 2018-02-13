@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight, StyleSheet, Picker, TextInput, Text } from 'react-native';
+import { View, TouchableHighlight, StyleSheet, Picker, TextInput, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 10,
     borderRadius: 3,
+    height:35,
   },
   buttonText: {
     color: 'yellow',
@@ -77,12 +78,14 @@ class SearchBar extends React.Component {
             />
           </View>
         </View>
-        <TouchableHighlight
-          style={styles.borderStyle}
-          onPress={() => this.props.startSearch()}
-        >
-          <Text style={styles.buttonText}>{'USE THE FORCE'}</Text>
-        </TouchableHighlight>
+        {this.props.isLoading ?
+          <View style={styles.borderStyle}>
+            <ActivityIndicator size="small" color='yellow'/>
+          </View> :
+          <TouchableHighlight style={styles.borderStyle} onPress={() => this.props.startSearch()} >
+            <Text style={styles.buttonText}>{'USE THE FORCE'}</Text>
+          </TouchableHighlight>
+        }
       </View>
     )
   }

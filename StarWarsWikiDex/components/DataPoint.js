@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import DataTitle from './DataTitle'
-import DataContentBox from './DataContentBox'
+import DataSingleRow from './DataSingleRow'
 
 const styles = StyleSheet.create({
   box: {
@@ -16,27 +16,27 @@ const styles = StyleSheet.create({
 class DataPoint extends React.Component {
   constructor(props) {
     super(props);
-    this.getDataContentBoxes = this.getDataContentBoxes.bind(this);
-    this.renderDataContentBox = this.renderDataContentBox.bind(this);
+    this.getDataRows = this.getDataRows.bind(this);
+    this.renderDataSingleRow = this.renderDataSingleRow.bind(this);
   }
 
-  getDataContentBoxes() {
+  getDataRows() {
     if (typeof(this.props.content) === 'string') {
-      return <DataContentBox content={this.props.content}/>
+      return <DataSingleRow content={this.props.content}/>
     }
     return (
       <View>
         <FlatList
           data={this.props.content.map(item => item)}
           keyExtractor={(item, index) => index}
-          renderItem={this.renderDataContentBox}
+          renderItem={this.renderDataSingleRow}
         />
       </View>
     )
   }
 
-  renderDataContentBox = ({index, item}) => (
-    <DataContentBox content={item}/>
+  renderDataSingleRow = ({index, item}) => (
+    <DataSingleRow content={item}/>
   );
 
   render() {
@@ -45,7 +45,7 @@ class DataPoint extends React.Component {
       content.length !== 0 ? (
         <View style={styles.box}>
           <DataTitle title={title}/>
-          {this.getDataContentBoxes()}
+          {this.getDataRows()}
         </View>
       ) : null
     )

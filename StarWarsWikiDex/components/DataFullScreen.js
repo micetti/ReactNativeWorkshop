@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import DataPoint from './DataPoint';
 
-class DataList extends React.Component {
+class DataFullScreen extends React.Component {
   constructor(props) {
     super(props);
     this.getDataPoints = this.getDataPoints.bind(this);
@@ -37,9 +37,9 @@ class DataList extends React.Component {
   }
 }
 
-DataList.propTypes = {
+DataFullScreen.propTypes = {
   content: PropTypes.object.isRequired,
 };
 
 
-export { DataList as default }
+export { DataFullScreen as default }

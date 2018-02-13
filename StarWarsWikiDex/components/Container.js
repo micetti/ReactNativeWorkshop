@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Header from './Header';
-import DataList from './DataList'
+import DataFullScreen from './DataFullScreen'
 import SearchBar from './SearchBar'
 
 const initialData = {
@@ -32,13 +32,14 @@ const initialData = {
   url: 'https://swapi.co/api/people/2/'
 };
 
-class Screen extends React.Component {
+class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       type: 'people',
       element: '4',
       data: initialData,
+      isLoading: false,
     };
     this.updateType = this.updateType.bind(this);
     this.updateElement = this.updateElement.bind(this);
@@ -54,9 +55,11 @@ class Screen extends React.Component {
   }
 
   startSearch() {
+    this.setState({ isLoading: true });
     fetch(`https://swapi.co/api/${this.state.type}/${this.state.element}`)
       .then(response => response.json())
       .then(objectResponse => this.setState({data: objectResponse}))
+      .then(() => this.setState({ isLoading: false }))
       .catch(error => console.warn(error));
   }
 
@@ -70,11 +73,12 @@ class Screen extends React.Component {
           updateType={this.updateType}
           updateElement={this.updateElement}
           startSearch={this.startSearch}
+          isLoading={this.state.isLoading}
         />
-        <DataList content={this.state.data}/>
+        <DataFullScreen content={this.state.data}/>
       </View>
     )
   }
 }
 
-export { Screen as default }
+export { Container as default }
