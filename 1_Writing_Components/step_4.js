@@ -10,7 +10,7 @@ const fakeData = {
   eye_color: 'yellow',
   birth_year: '112BBY',
   gender: 'n/a',
-}
+};
 
 const styles = StyleSheet.create({
   dataTitleText: {
