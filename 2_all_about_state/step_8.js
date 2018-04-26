@@ -1,23 +1,59 @@
 import React from 'react';
-import { View, StyleSheet, Text, FlatList, TouchableHighlight } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableHighlight,
+  Picker,
+  TextInput,
+} from 'react-native';
 import { Constants } from 'expo';
 
-const fakeData = {
-  still: 'fake data',
-  need: ['state', 'and', 'more', 'changes'],
-};
-
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+      picked: 'planets',
+      entered: 0,
+    }
+  }
+
   render() {
     return (
       <View style={styles.app}>
         <TouchableHighlight
           style={styles.forceButtonBorderStyle}
-          onPress={() => console.log('I need to change the state')}
+          onPress={() => this.setState({count: this.state.count + 1})}
         >
           <Text style={styles.forceButtonText}>{'USE THE FORCE'}</Text>
         </TouchableHighlight>
-        <DataScreen content={fakeData} />
+        <View style={styles.inputBorders}>
+          <Picker
+            selectedValue={this.state.picked}
+            onValueChange={(itemValue, itemIndex) => this.setState({picked: itemValue})}
+            mode={'dropdown'}
+            style={styles.inputItemStyle}
+          >
+            <Picker.Item label='planets' value='planets'/>
+            <Picker.Item label='species' value='species'/>
+            <Picker.Item label='starships' value='starships'/>
+          </Picker>
+        </View>
+        <View style={styles.inputBorders}>
+          <TextInput
+            keyboardType={'numeric'}
+            style={styles.inputItemStyle}
+            allowFontScaling={true}
+            underlineColorAndroid={'transparent'}
+            onChangeText={(text) => this.setState({entered: text})}
+            value={this.state.entered}
+            defaultValue={this.state.entered}
+          />
+        </View>
+        <DataScreen content={this.state} />
       </View>
     )
   }
@@ -105,7 +141,9 @@ const styles = StyleSheet.create({
 //*****************************************************************************
 
 const DataTitle = props => (
-  <Text style={styles.dataTitleText} >{props.title}</Text>
+  <View>
+    <Text style={styles.dataTitleText} >{props.title}</Text>
+  </View>
 );
 
 const DataSingleRow = props => (

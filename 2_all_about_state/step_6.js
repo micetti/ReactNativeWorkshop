@@ -2,22 +2,25 @@ import React from 'react';
 import { View, StyleSheet, Text, FlatList, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 
-const fakeData = {
-  still: 'fake data',
-  need: ['state', 'and', 'more', 'changes'],
-};
-
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    }
+  }
+
   render() {
     return (
       <View style={styles.app}>
         <TouchableHighlight
           style={styles.forceButtonBorderStyle}
-          onPress={() => console.log('I need to change the state')}
+          onPress={() => this.setState({count: this.state.count + 1})}
         >
           <Text style={styles.forceButtonText}>{'USE THE FORCE'}</Text>
         </TouchableHighlight>
-        <DataScreen content={fakeData} />
+        <DataScreen content={this.state} />
       </View>
     )
   }
@@ -105,7 +108,9 @@ const styles = StyleSheet.create({
 //*****************************************************************************
 
 const DataTitle = props => (
-  <Text style={styles.dataTitleText} >{props.title}</Text>
+  <View>
+    <Text style={styles.dataTitleText} >{props.title}</Text>
+  </View>
 );
 
 const DataSingleRow = props => (
